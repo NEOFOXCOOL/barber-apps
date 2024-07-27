@@ -1,6 +1,7 @@
 import 'package:barberking/pages/component/appColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 class Login extends StatefulWidget {
@@ -11,9 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
-  final ButtonStyle styleButton =
-  ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   late bool isBarber ;
   late bool isClient ;
@@ -39,16 +37,16 @@ class _LoginState extends State<Login> {
         children: [
           // party top of login page
           Positioned(
-            left: -150,top: -150,
+            left: -140,top: -140,
             child: Container(
             height: 400 ,
-            width: 400,
-            alignment: const FractionalOffset(0.2,2),
+            width: 400 ,
+            alignment: const FractionalOffset(0.7,0.6),
             decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.loginComponentColors
             ),
-            child: Text("login".toUpperCase(),style: const TextStyle(color: AppColors.loginBackground,fontSize: 40)),
+            child: const Text("Login",style: const TextStyle(color: AppColors.loginBackground,fontSize: 50)),
           ),),
 
           //party bottom of login page
@@ -61,13 +59,12 @@ class _LoginState extends State<Login> {
 
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                 const TextField(
+                 TextField(
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.mail),
-                      suffixIcon: Icon(Icons.clear),
-                      hintText: 'enter your email',
+                      labelText: 'Email',
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)
+                          borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10),
                       ),
 
                     ),
@@ -85,13 +82,19 @@ class _LoginState extends State<Login> {
                       });}),
                     ],
                   ),
-                  ElevatedButton(
-                      style: styleButton,
-                      onPressed: (){
-                        setState(() {
-                          print("------login !!!! -------");
-                        });
-                      }, child: Text("login")),
+                  SizedBox(
+                    height: 50,width: MediaQuery.of(context).size.width,
+                    child: FilledButton(
+                      style: ButtonStyle(backgroundColor: WidgetStateColor.resolveWith((states) {
+                        if(states.contains(MaterialState.pressed)){
+                          return Colors.lightGreenAccent;
+                        }
+                        else{return Colors.black;}
+                      },),),
+                      onPressed: (){},
+                      child: const Text("Login"),
+                    ),
+                  ),
                   const SizedBox(height: 20,),
                 ],
               ),
