@@ -1,14 +1,15 @@
 class Response {
-  late final String email;
-  late final String userState;
+  late final  String token;
+  late final  String message;
 
-  Response({required this.email, required this.userState});
+  Response({ required this.token,  required this.message});
 
-  Response.fromJson(Map<String, dynamic> json, this.email, this.userState){
-    userState = json['userState'];
-    email = json['email'];
+  Response.fromJson(Map<String, dynamic> json){
+    token = json['userState'];
+    message = json['email'];
   }
 
 }
+
 
 
